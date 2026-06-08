@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LexiTech — Data Flow Diagram</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#e7eeff',
+        primaryTextColor: '#00355f',
+        primaryBorderColor: '#006b5f',
+        lineColor: '#006b5f',
+        fontFamily: 'Inter, system-ui, sans-serif',
+      },
+    });
+  </script>
+</head>
+<body>
+  <header class="hero compact">
+    <p class="eyebrow">LexiTech Dictionary App</p>
+    <h1>Data Flow Diagram</h1>
+    <p class="lead">How data moves through search, API integration, history, audio, caching, and error handling.</p>
+  </header>
+
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="pages-endpoints.html">Pages &amp; Endpoints</a>
+    <a href="dataflow.html" class="active">Data Flow</a>
+  </nav>
+
+  <main class="content">
+    <section class="section">
+      <h2>Activity 1 — Word Search &amp; API Integration</h2>
+      <p class="desc">User submits a word → validation → API request → parse → store → navigate.</p>
+      <pre class="mermaid">
+sequenceDiagram
+  actor User
+  participant UI as Search Screen
+  participant Valid as validation.ts
+  participant Ctx as DictionaryContext
+  participant Cache as dictionaryCache
+  participant API as dictionaryApi (axios)
+  participant Remote as Free Dictionary API
+
+  User->>UI: Enter word & tap Search
+  UI->>Valid: validateSearchWord(input)
+  alt invalid input
+    Valid-->>UI: error message
+  else valid input
+    Valid-->>UI: ok
+    UI->>Ctx: searchWord(word)
+    Ctx->>Ctx: setLoading(true)
+    Ctx->>Cache: getCachedDefinition(word)
+    alt cache hit
+      Cache-->>Ctx: DictionaryEntry[]
+    else cache miss
+      Ctx->>API: fetchWordDefinition(word)
+      API->>Remote: GET /entries/en/{word}
+      alt 200 OK
+        Remote-->>API: JSON array
+        API->>Cache: setCachedDefinition(word, data)
+        API-->>Ctx: DictionaryEntry[]
+      else 404
+        Remote-->>API: Not found
+        API-->>Ctx: DictionaryError (not_found)
+      else network failure
+        Remote-->>API: Error
+        API-->>Ctx: DictionaryError (network)
+      end
+    end
+    Ctx->>Ctx: setLoading(false)
+    alt success
+      Ctx->>Ctx: setEntries(data)
+      Ctx-->>UI: navigate word-details
+    else not found
+      Ctx-->>UI: navigate not-found
+    else other error
+      Ctx-->>UI: show error on Home
+    end
+  end
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>Activity 2 &amp; 3 — Word Display &amp; Pronunciation</h2>
+      <p class="desc">Word details screen reads context state and renders definitions with optional audio playback.</p>
+      <pre class="mermaid">
+flowchart TD
+  Entries["DictionaryContext.entries"] --> WD["word-details.tsx"]
+  WD --> Parse["dictionaryApi helpers\ngetAllPhoneticTexts\ngetPhoneticAudioEntries"]
+  Parse --> Display["Render UI"]
+  Display --> Word["Word title + meta"]
+  Display --> Phon["WordPhonetics\n(or 'not available')"]
+  Display --> Defs["DefinitionSection cards\nparts of speech, examples"]
+  Display --> Audio["PronunciationButton\nif audio URLs exist"]
+
+  Audio --> Player["AudioPlayerContext"]
+  Player --> AV["expo-av Sound"]
+  AV --> CDN["Remote audio URL"]
+
+  UserPlay["User taps Play"] --> Player
+  UserPause["User taps Pause"] --> Player
+  UserStop["User taps Stop"] --> Player
+
+  Player --> States["States: idle · playing · paused"]
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>Activity 4 — Drawer &amp; Search History</h2>
+      <p class="desc">Successful searches are saved locally; drawer lists history without duplicates.</p>
+      <pre class="mermaid">
+sequenceDiagram
+  actor User
+  participant Ctx as DictionaryContext
+  participant Hist as SearchHistoryContext
+  participant Store as AsyncStorage
+  participant Drawer as CustomDrawerContent
+
+  Note over Ctx,Hist: After successful API response
+  Ctx->>Hist: addToHistory(entry)
+  Hist->>Hist: Remove duplicate word
+  Hist->>Hist: Prepend new item (word, POS, preview, timestamp)
+  Hist->>Store: persist HISTORY_KEY
+
+  User->>Drawer: Open drawer (menu icon)
+  Drawer->>Hist: read history[]
+  Hist-->>Drawer: SearchHistoryItem[]
+  Drawer-->>User: Display history list
+
+  User->>Drawer: Tap history word
+  Drawer->>Ctx: searchWord(word)
+  Note over Ctx: Triggers new API lookup (or cache hit)
+
+  User->>Drawer: Clear all (with confirm)
+  Drawer->>Hist: clearHistory()
+  Hist->>Store: remove / empty array
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>Activity 5 — Error Handling &amp; User Feedback</h2>
+      <p class="desc">Graceful handling of empty input, 404, network errors, and malformed responses.</p>
+      <pre class="mermaid">
+flowchart TD
+  Start["searchWord() called"] --> Empty{Word empty?}
+  Empty -->|yes| E1["Set error message\nStay on screen"]
+  Empty -->|no| Load["setLoading(true)\nClear previous entries"]
+
+  Load --> Fetch["fetchWordDefinition()"]
+  Fetch --> CacheCheck{Cache hit?}
+  CacheCheck -->|yes| Success["setEntries(data)"]
+  CacheCheck -->|no| HTTP["axios GET request"]
+
+  HTTP --> Status{Response?}
+  Status -->|"200 + valid JSON array"| Success
+  Status -->|404| NF["DictionaryError not_found\nNavigate not-found screen"]
+  Status -->|no response| NET["DictionaryError network\nShow error + Retry"]
+  Status -->|invalid / empty array| UNK["DictionaryError unknown\nShow error + Retry"]
+
+  Success --> Hist["addToHistory()"]
+  Hist --> Nav["Navigate word-details"]
+  Fetch --> Finally["setLoading(false)"]
+  NF --> Finally
+  NET --> Finally
+  UNK --> Finally
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>Complete Data Flow Overview</h2>
+      <pre class="mermaid">
+flowchart LR
+  subgraph Input
+    U["User Input"]
+  end
+
+  subgraph AppState
+  DC["DictionaryContext\nentries · loading · error"]
+  HC["SearchHistoryContext"]
+  SC["SavedWordsContext"]
+  AC["AudioPlayerContext"]
+  end
+
+  subgraph Persistence
+  AS[("AsyncStorage")]
+  end
+
+  subgraph External
+  API[("Dictionary API")]
+  AUD[("Audio Files")]
+  end
+
+  U --> DC
+  DC <-->|"cache read/write"| AS
+  DC <-->|"axios"| API
+  DC --> HC
+  HC <-->|"history JSON"| AS
+  SC <-->|"saved words JSON"| AS
+  DC --> AC
+  AC --> AUD
+  U --> SC
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>Local Storage Keys</h2>
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Data Stored</th><th>Used By</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>@lexitech_search_history</code></td><td>Array of searched words with preview</td><td>SearchHistoryContext, Drawer</td></tr>
+          <tr><td><code>@lexitech_saved_words</code></td><td>Bookmarked words</td><td>SavedWordsContext, Saved screen</td></tr>
+          <tr><td><code>@lexitech_dictionary_cache</code></td><td>Cached API responses (last 40 words)</td><td>dictionaryCache.ts</td></tr>
+          <tr><td><code>@lexitech_theme_mode</code></td><td>light | dark</td><td>ThemeContext</td></tr>
+          <tr><td><code>@lexitech_onboarding_complete</code></td><td>First-launch flag</td><td>Bootstrap screen</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>LexiTech Solutions Ltd — Dictionary Mobile Application</p>
+  </footer>
+</body>
+</html>

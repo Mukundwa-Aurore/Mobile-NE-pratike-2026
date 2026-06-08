@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LexiTech — Project Diagrams</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">LexiTech Solutions Ltd · Dictionary Mobile App</p>
+    <h1>Project Design Diagrams</h1>
+    <p class="lead">
+      Architecture, navigation/pages, API endpoints, and data-flow documentation for the
+      cross-platform React Native (Expo) dictionary application.
+    </p>
+  </header>
+
+  <main class="grid">
+    <a class="card" href="architecture.html">
+      <span class="card-icon">🏗️</span>
+      <h2>Architecture Diagram</h2>
+      <p>Layered app structure: UI screens, React contexts, services, local storage, and external API.</p>
+    </a>
+    <a class="card" href="pages-endpoints.html">
+      <span class="card-icon">🗺️</span>
+      <h2>Pages &amp; Endpoints</h2>
+      <p>Screen navigation map, Expo Router routes, and Free Dictionary API endpoints consumed by the app.</p>
+    </a>
+    <a class="card" href="dataflow.html">
+      <span class="card-icon">🔄</span>
+      <h2>Data Flow Diagram</h2>
+      <p>Search, history, caching, audio playback, error handling, and persistence flows.</p>
+    </a>
+  </main>
+
+  <footer class="footer">
+    <p>Built with React Native · Expo SDK 54 · axios · AsyncStorage</p>
+    <p>API: <code>https://api.dictionaryapi.dev/api/v2/entries/en/{word}</code></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lexicon - Innovation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "outline": "#727780",
+                    "on-primary-fixed-variant": "#07497d",
+                    "surface-bright": "#f9f9ff",
+                    "inverse-primary": "#a0c9ff",
+                    "on-secondary-fixed": "#00201c",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#d8e3fb",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "surface": "#f9f9ff",
+                    "primary": "#00355f",
+                    "primary-fixed-dim": "#a0c9ff",
+                    "background": "#f9f9ff",
+                    "on-secondary-fixed-variant": "#005047",
+                    "inverse-on-surface": "#ecf1ff",
+                    "on-tertiary-fixed": "#191c1e",
+                    "secondary-fixed": "#62fae3",
+                    "primary-fixed": "#d2e4ff",
+                    "surface-container-low": "#f0f3ff",
+                    "primary-container": "#0f4c81",
+                    "tertiary-fixed": "#e0e3e5",
+                    "on-primary-container": "#8ebdf9",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c2c7d1",
+                    "on-primary-fixed": "#001c37",
+                    "surface-tint": "#2d6197",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#3cddc7",
+                    "on-surface": "#111c2d",
+                    "on-tertiary-container": "#b8bbbc",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#007165",
+                    "surface-variant": "#d8e3fb",
+                    "secondary": "#006b5f",
+                    "on-background": "#111c2d",
+                    "inverse-surface": "#263143",
+                    "tertiary": "#313436",
+                    "surface-dim": "#cfdaf2",
+                    "on-surface-variant": "#42474f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "surface-container-high": "#dee8ff",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#474b4d",
+                    "secondary-container": "#62fae3",
+                    "surface-container": "#e7eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "unit": "4px",
+                    "padding-search": "12px 16px",
+                    "gutter-card": "16px",
+                    "margin-page": "20px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "phonetic-display": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "phonetic-display": ["18px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        -webkit-tap-highlight-color: transparent;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 4px 20px rgba(7, 73, 125, 0.04);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .fill-icon {
+        font-variation-settings: 'FILL' 1;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-md shadow-sm">
+<div class="flex items-center justify-between px-margin-page h-16 w-full max-w-md mx-auto">
+<button aria-label="Go Back" class="flex items-center justify-center p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary">Lexicon</h1>
+<div class="flex gap-2">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 text-on-surface-variant">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 px-margin-page max-w-md mx-auto space-y-stack-lg">
+<!-- Word Hero Section -->
+<section class="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="flex items-center justify-between">
+<div class="space-y-1">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface tracking-tight">Innovation</h2>
+<p class="font-phonetic-display text-phonetic-display text-on-surface-variant">/ˌɪn.əˈveɪ.ʃən/</p>
+</div>
+<button aria-label="Play pronunciation" class="w-14 h-14 flex items-center justify-center rounded-full border-2 border-secondary text-primary hover:bg-secondary-container transition-all active:scale-90" onclick="playAudio()">
+<span class="material-symbols-outlined text-3xl">volume_up</span>
+</button>
+</div>
+<!-- Header Visual Image -->
+<div class="w-full h-40 rounded-xl overflow-hidden shadow-lg">
+<img alt="Innovation concept" class="w-full h-full object-cover" data-alt="A bright, high-key photograph representing futuristic technology and human creativity. A sleek, translucent glass interface glows with soft cyan data visualizations against a clean, minimal white background. Warm, natural sunlight filters through, creating soft shadows and a sense of progress and optimism. The overall aesthetic is professional, sophisticated, and deeply rooted in a modern tech-forward atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh1EOw6tkObukJ9hvM69RuR0W_eRr9D7lzyRkXtxaQs5aT-qEOq7jkLUnKx1nPMyLJyXbco20CW7QNSpfOP3Mfuo71UW2vIYUFXO2GSTLbAH8kzBTEWNxw-sru7rKxxcNMKBE403HpzHq9WtAAopYlaqg1E6QVgdD4O4DNdFzch-foceCRO0ud2HdIIIXRdqILzB9t0d6ViJZuofYDapQn0B8iaDrIV01cLUdyKP-7M70WqiGq7IzTsxZbFsR9Y7wTO4uCgprK308"/>
+</div>
+</section>
+<!-- Meanings List -->
+<div class="space-y-stack-md">
+<!-- Noun Section -->
+<div class="glass-card rounded-xl p-gutter-card space-y-4">
+<div class="flex items-center gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm">Noun</span>
+</div>
+<div class="space-y-stack-md">
+<div class="flex gap-3">
+<div class="mt-2 w-2 h-2 rounded-sm bg-secondary flex-shrink-0"></div>
+<div class="space-y-2">
+<p class="font-body-md text-body-md text-on-surface">The action or process of innovating.</p>
+<div class="p-3 bg-surface-container-low rounded-lg italic text-on-surface-variant font-body-md text-[14px]">
+                                "The company's commitment to innovation has kept it at the forefront of the industry."
+                            </div>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="mt-2 w-2 h-2 rounded-sm bg-secondary flex-shrink-0"></div>
+<div class="space-y-2">
+<p class="font-body-md text-body-md text-on-surface">A new method, idea, product, etc.</p>
+<div class="p-3 bg-surface-container-low rounded-lg italic text-on-surface-variant font-body-md text-[14px]">
+                                "Technological innovations are changing the way we live and work."
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Verb Section (Related/Derived) -->
+<div class="glass-card rounded-xl p-gutter-card space-y-4 opacity-90">
+<div class="flex items-center gap-2">
+<span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm">Related Verb: Innovate</span>
+</div>
+<div class="flex gap-3">
+<div class="mt-2 w-2 h-2 rounded-sm bg-outline-variant flex-shrink-0"></div>
+<div class="space-y-2">
+<p class="font-body-md text-body-md text-on-surface">To make changes in something established, especially by introducing new methods, ideas, or products.</p>
+</div>
+</div>
+</div>
+<!-- Synonyms & Antonyms Bento Style -->
+<div class="grid grid-cols-2 gap-stack-sm">
+<div class="bg-primary-container/10 p-4 rounded-xl border border-primary-container/20">
+<h4 class="font-label-md text-label-md text-primary mb-2">Synonyms</h4>
+<div class="flex flex-wrap gap-2">
+<span class="text-on-surface-variant font-body-md text-sm">Revolution</span>
+<span class="text-on-surface-variant font-body-md text-sm">Modernization</span>
+<span class="text-on-surface-variant font-body-md text-sm">Creativity</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl">
+<h4 class="font-label-md text-label-md text-on-surface-variant mb-2">Antonyms</h4>
+<div class="flex flex-wrap gap-2">
+<span class="text-on-surface-variant font-body-md text-sm">Stagnation</span>
+<span class="text-on-surface-variant font-body-md text-sm">Custom</span>
+<span class="text-on-surface-variant font-body-md text-sm">Tradition</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Word Origin / Extra Info -->
+<section class="pb-10">
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Etymology</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Mid 16th century: from Latin <span class="italic">innovatio(n-)</span>, from the verb <span class="italic">innovare</span>, from <span class="italic">in-</span> ‘into’ + <span class="italic">novare</span> ‘make new’ (from <span class="italic">novus</span> ‘new’).
+            </p>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Hidden on focus/task screens but usually part of the shell) -->
+<!-- According to mandate, it's a detail screen, but we show it for shell continuity if it's a top-level detail -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-surface/85 backdrop-blur-md shadow-lg rounded-t-xl z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant/30 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant/30 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="bookmark">bookmark</span>
+<span class="font-label-md text-label-md">Saved</span>
+</a>
+</nav>
+<script>
+        function playAudio() {
+            // Simulated micro-interaction
+            const btn = event.currentTarget;
+            btn.classList.add('bg-secondary-container');
+            setTimeout(() => {
+                btn.classList.remove('bg-secondary-container');
+            }, 500);
+            
+            // Audio visual feedback could be added here
+            console.log("Playing pronunciation for 'Innovation'...");
+        }
+
+        // Simple scroll observer for header shadow
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

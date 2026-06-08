@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lexicon - Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#474b4d",
+                        "on-surface": "#111c2d",
+                        "on-secondary-fixed": "#00201c",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-background": "#111c2d",
+                        "surface": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-primary-fixed-variant": "#07497d",
+                        "secondary-fixed": "#62fae3",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "error-container": "#ffdad6",
+                        "secondary": "#006b5f",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary-fixed": "#e0e3e5",
+                        "primary-fixed": "#d2e4ff",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "secondary-container": "#62fae3",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "surface-tint": "#2d6197",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#b8bbbc",
+                        "inverse-primary": "#a0c9ff",
+                        "on-surface-variant": "#42474f",
+                        "on-secondary-fixed-variant": "#005047",
+                        "surface-container": "#e7eeff",
+                        "inverse-surface": "#263143",
+                        "surface-container-highest": "#d8e3fb",
+                        "surface-dim": "#cfdaf2",
+                        "primary-container": "#0f4c81",
+                        "on-primary-fixed": "#001c37",
+                        "outline-variant": "#c2c7d1",
+                        "on-secondary-container": "#007165",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#727780",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#8ebdf9",
+                        "primary": "#00355f",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#dee8ff",
+                        "tertiary": "#313436",
+                        "surface-variant": "#d8e3fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-card": "16px",
+                        "unit": "4px",
+                        "stack-lg": "24px",
+                        "padding-search": "12px 16px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-page": "20px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "phonetic-display": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "phonetic-display": ["18px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            background: rgba(249, 249, 255, 0.85);
+        }
+        .vibrant-accent {
+            background: radial-gradient(circle at top right, rgba(98, 250, 227, 0.15), transparent 60%);
+        }
+        .blob-animation {
+            animation: blob-float 20s infinite alternate ease-in-out;
+        }
+        @keyframes blob-float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(10px, -20px) scale(1.1); }
+            100% { transform: translate(-15px, 15px) scale(0.9); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col items-center justify-between selection:bg-secondary-container selection:text-on-secondary-container overflow-hidden">
+<!-- Subtle Background Accents -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-[-10%] right-[-10%] w-[60%] h-[40%] bg-secondary/5 blur-[120px] rounded-full blob-animation"></div>
+<div class="absolute bottom-[-5%] left-[-5%] w-[50%] h-[30%] bg-primary/5 blur-[100px] rounded-full blob-animation" style="animation-delay: -5s;"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 w-full max-w-md mx-auto px-margin-page flex-1 flex flex-col items-center justify-center pt-16">
+<!-- Branding Anchor (TopAppBar Headline Equivalent) -->
+<header class="mb-stack-lg animate-in fade-in slide-in-from-top-4 duration-700">
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary tracking-tight">Lexicon</h1>
+</header>
+<!-- Illustration Hero -->
+<div class="relative w-full aspect-square max-w-[280px] mb-12 group">
+<div class="absolute inset-0 bg-primary-container/5 rounded-full scale-110 group-hover:scale-125 transition-transform duration-1000"></div>
+<div class="relative w-full h-full rounded-2xl overflow-hidden shadow-sm">
+<img alt="Lexicon Welcome" class="w-full h-full object-cover" data-alt="A futuristic, high-end digital illustration of a glowing, translucent book constructed from crystalline data structures and flowing teal energy lines. The background is a clean, bright white space reflecting soft studio lighting with a contemporary Kigali tech aesthetic. Vibrant teal and deep sapphire pulses of light emanate from the book's center, symbolizing connection and the depth of language. The style is clean, corporate modernism with a sense of innovative professional energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOi8oY1xgn9wYG_LFQxohrUjrGAxI4_gzwaw-bxwfRhbPHpXAzstQU0zxn8ebdLZvsor-AHzdx0-IIdD82-_2bNcB4rvoIEoSZpYb-GWVqz3LXQGteVyYETeN9NVZk34-Yd359ZPR1AiqbdZc7DVILalq-2mVzZrLsfoAT5z4jqqrWgdBzflTe1U_xMi90Xbnbw7NIMVVq3d-Clb-N7AMpSu7wFj4IHsGq2H_Qzv3nM3PO63OBbLPPVqbfzexXI70zt-5ZUwRMBkY"/>
+</div>
+<!-- Abstract Floating Element for Kigali Tech vibe -->
+<div class="absolute -bottom-4 -right-4 w-20 h-20 bg-secondary-container rounded-xl rotate-12 flex items-center justify-center shadow-lg border-4 border-surface">
+<span class="material-symbols-outlined text-on-secondary-container text-[32px]">translate</span>
+</div>
+</div>
+<!-- Copy Stack -->
+<div class="text-center space-y-stack-sm px-4 mb-16">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+                Master your vocabulary.
+            </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
+                Join the Kigali scholar community and explore the depth of language.
+            </p>
+</div>
+</main>
+<!-- Navigation/Action Shell (Bottom Section) -->
+<footer class="relative z-10 w-full max-w-md mx-auto px-margin-page pb-12 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-500">
+<!-- Primary Action -->
+<button class="w-full h-14 bg-primary text-on-primary font-label-md text-label-md rounded-xl shadow-sm active:scale-95 transition-all duration-150 flex items-center justify-center gap-2 group" onclick="window.location.reload()">
+            Get Started
+            <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Secondary/Transactional Link -->
+<div class="text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Already have an account? 
+                <a class="text-primary font-bold hover:underline transition-all active:opacity-70" href="#">Log In</a>
+</p>
+</div>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add subtle parallax to the hero image on mouse/touch move
+            const hero = document.querySelector('.group');
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
+                hero.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            // Handle transition states
+            const primaryBtn = document.querySelector('button');
+            primaryBtn.addEventListener('mousedown', () => {
+                primaryBtn.classList.add('opacity-90');
+            });
+            primaryBtn.addEventListener('mouseup', () => {
+                primaryBtn.classList.remove('opacity-90');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,9 @@
+export const APP_NAME = 'LexiTech';
+export const APP_TAGLINE = 'LexiTech Solutions Ltd';
+export const ONBOARDING_KEY = '@lexitech_onboarding_complete';
+export const HISTORY_KEY = '@lexitech_search_history';
+export const SESSION_KEY = '@lexitech_last_session';
+export const SAVED_KEY = '@lexitech_saved_words';
+export const THEME_KEY = '@lexitech_theme_mode';
+export const PROFILE_KEY = '@lexitech_profile';
+export const APP_VERSION = '2.4.0';

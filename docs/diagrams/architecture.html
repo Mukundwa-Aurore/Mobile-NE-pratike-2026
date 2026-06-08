@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LexiTech — Architecture Diagram</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#e7eeff',
+        primaryTextColor: '#00355f',
+        primaryBorderColor: '#006b5f',
+        lineColor: '#006b5f',
+        secondaryColor: '#62fae3',
+        tertiaryColor: '#f0f3ff',
+        fontFamily: 'Inter, system-ui, sans-serif',
+      },
+    });
+  </script>
+</head>
+<body>
+  <header class="hero compact">
+    <p class="eyebrow">LexiTech Dictionary App</p>
+    <h1>Architecture Diagram</h1>
+    <p class="lead">Layered cross-platform mobile architecture using React Native, Expo Router, and Context API.</p>
+  </header>
+
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="architecture.html" class="active">Architecture</a>
+    <a href="pages-endpoints.html">Pages &amp; Endpoints</a>
+    <a href="dataflow.html">Data Flow</a>
+  </nav>
+
+  <main class="content">
+    <section class="section">
+      <h2>High-Level System Architecture</h2>
+      <p class="desc">
+        The app runs on Android and iOS via Expo. Presentation layers call React Context providers,
+        which delegate to service modules. Data is persisted locally with AsyncStorage and fetched remotely
+        from the Free Dictionary API using axios.
+      </p>
+      <pre class="mermaid">
+flowchart TB
+  subgraph Clients["Client Platforms"]
+    A["Android Device"]
+    I["iOS Device"]
+    W["Web Browser"]
+  end
+
+  subgraph ExpoApp["LexiTech Expo Application"]
+    subgraph Presentation["Presentation Layer"]
+      Screens["Screens\n(app/*)"]
+      Components["Reusable Components\n(UI, Word, Audio, Drawer)"]
+      Nav["Expo Router Navigation\nStack · Drawer · Tabs"]
+    end
+
+    subgraph State["State Management Layer"]
+      DC["DictionaryContext"]
+      HC["SearchHistoryContext"]
+      SC["SavedWordsContext"]
+      AC["AudioPlayerContext"]
+      TC["ThemeContext"]
+    end
+
+    subgraph Services["Service Layer"]
+      API["dictionaryApi.ts\n(axios)"]
+      Cache["dictionaryCache.ts"]
+      Valid["validation.ts"]
+    end
+
+    subgraph Storage["Local Persistence"]
+      AS["AsyncStorage"]
+      HKey["@lexitech_search_history"]
+      SKey["@lexitech_saved_words"]
+      TKey["@lexitech_theme_mode"]
+      OKey["@lexitech_onboarding_complete"]
+      CKey["@lexitech_dictionary_cache"]
+    end
+  end
+
+  subgraph External["External Services"]
+    FDA["Free Dictionary API\ndictionaryapi.dev"]
+    AudioCDN["Audio CDN URLs\n(from API phonetics)"]
+  end
+
+  A --> ExpoApp
+  I --> ExpoApp
+  W --> ExpoApp
+
+  Screens --> Components
+  Screens --> Nav
+  Screens --> State
+  Components --> State
+
+  DC --> API
+  DC --> HC
+  API --> Cache
+  Cache --> CKey
+  HC --> HKey
+  SC --> SKey
+  TC --> TKey
+
+  HKey --> AS
+  SKey --> AS
+  TKey --> AS
+  OKey --> AS
+  CKey --> AS
+
+  API -->|"GET /entries/en/{word}"| FDA
+  AC -->|"expo-av playback"| AudioCDN
+      </pre>
+      <div class="legend">
+        <span>Presentation — UI &amp; navigation</span>
+        <span>Context — global app state</span>
+        <span>Services — API &amp; business logic</span>
+        <span>AsyncStorage — offline persistence</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Application Layer Breakdown</h2>
+      <p class="desc">Folder responsibilities inside the React Native codebase.</p>
+      <pre class="mermaid">
+flowchart LR
+  subgraph app_dir["app/ — Routes & Screens"]
+    R["_layout.tsx\nRoot Stack"]
+    D["(drawer)/\nDrawer Navigator"]
+    T["(tabs)/\nTab Navigator"]
+    SS["search/\nSearch Stack"]
+  end
+
+  subgraph components_dir["components/"]
+    UI["ui/\nAppHeader, SearchInput…"]
+    WORD["word/\nDefinitionSection…"]
+    AUDIO["audio/\nPronunciationButton"]
+    DRAWER["drawer/\nCustomDrawerContent"]
+    NAV["navigation/\nModernTabBar"]
+  end
+
+  subgraph context_dir["context/"]
+    C1["DictionaryContext"]
+    C2["SearchHistoryContext"]
+    C3["SavedWordsContext"]
+    C4["AudioPlayerContext"]
+    C5["ThemeContext"]
+  end
+
+  subgraph services_dir["services/"]
+    S1["dictionaryApi.ts"]
+    S2["dictionaryCache.ts"]
+  end
+
+  app_dir --> components_dir
+  app_dir --> context_dir
+  context_dir --> services_dir
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>Technology Stack</h2>
+      <table>
+        <thead>
+          <tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Framework</td><td>React Native 0.81 + Expo SDK 54</td><td>Cross-platform mobile development</td></tr>
+          <tr><td>Routing</td><td>Expo Router v6</td><td>File-based navigation (Stack, Drawer, Tabs)</td></tr>
+          <tr><td>HTTP Client</td><td>axios</td><td>Dictionary API requests (assignment requirement)</td></tr>
+          <tr><td>State</td><td>React Context API</td><td>Search results, history, saved words, theme, audio</td></tr>
+          <tr><td>Persistence</td><td>@react-native-async-storage/async-storage</td><td>History, bookmarks, theme, cache</td></tr>
+          <tr><td>Audio</td><td>expo-av</td><td>Pronunciation play / pause / stop</td></tr>
+          <tr><td>Testing</td><td>Expo CLI (<code>npx expo start</code>)</td><td>Run on device, emulator, or web</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>LexiTech Solutions Ltd — Dictionary Mobile Application</p>
+  </footer>
+</body>
+</html>

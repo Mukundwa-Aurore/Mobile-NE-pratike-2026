@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Word Not Found - Lexicon</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "outline": "#727780",
+                        "on-primary-fixed-variant": "#07497d",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#a0c9ff",
+                        "on-secondary-fixed": "#00201c",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#d8e3fb",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface": "#f9f9ff",
+                        "primary": "#00355f",
+                        "primary-fixed-dim": "#a0c9ff",
+                        "background": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#005047",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "secondary-fixed": "#62fae3",
+                        "primary-fixed": "#d2e4ff",
+                        "surface-container-low": "#f0f3ff",
+                        "primary-container": "#0f4c81",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-primary-container": "#8ebdf9",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c2c7d1",
+                        "on-primary-fixed": "#001c37",
+                        "surface-tint": "#2d6197",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "on-surface": "#111c2d",
+                        "on-tertiary-container": "#b8bbbc",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#007165",
+                        "surface-variant": "#d8e3fb",
+                        "secondary": "#006b5f",
+                        "on-background": "#111c2d",
+                        "inverse-surface": "#263143",
+                        "tertiary": "#313436",
+                        "surface-dim": "#cfdaf2",
+                        "on-surface-variant": "#42474f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-container-high": "#dee8ff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#474b4d",
+                        "secondary-container": "#62fae3",
+                        "surface-container": "#e7eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "padding-search": "12px 16px",
+                        "gutter-card": "16px",
+                        "margin-page": "20px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "phonetic-display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "phonetic-display": ["18px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(249, 249, 255, 0.85);
+            backdrop-filter: blur(20px);
+        }
+        .vibrant-accent-blob {
+            background: radial-gradient(circle, rgba(98, 250, 227, 0.15) 0%, rgba(249, 249, 255, 0) 70%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 glass-header shadow-sm h-16 flex items-center justify-between px-margin-page max-w-md mx-auto left-0 right-0">
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:opacity-70 active:scale-95">menu</button>
+<span class="font-headline-md text-headline-md-mobile font-bold text-primary">Lexicon</span>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:opacity-70 active:scale-95">search</button>
+</header>
+<!-- Main Canvas -->
+<main class="pt-24 pb-32 px-margin-page min-h-screen max-w-md mx-auto relative flex flex-col items-center justify-center">
+<!-- Decorative Ambient Background -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="vibrant-accent-blob absolute -top-20 -right-20 w-64 h-64 rounded-full"></div>
+<div class="vibrant-accent-blob absolute bottom-40 -left-20 w-80 h-80 rounded-full"></div>
+</div>
+<!-- Error Illustration Container -->
+<div class="relative w-full aspect-square mb-stack-lg animate-fade-in">
+<div class="absolute inset-0 bg-surface-container rounded-full scale-90 opacity-40 blur-3xl"></div>
+<img alt="Word not found" class="w-full h-full object-contain relative z-10" data-alt="A clean, minimalist 3D digital illustration of a stylized scholarly owl peering through a large, translucent teal magnifying glass into an empty wooden crate. The scene is set against a bright, airy off-white background with soft, sapphire-tinted shadows. The lighting is high-key and professional, capturing a 'Kigali Tech' aesthetic with vibrant teal accents and deep sapphire professional tones. The owl looks confused yet friendly, maintaining a polished corporate modernism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtKh7v3heIlT8_MGFwqFnqVWZDFH_B2VkcgbKQRaivtWTsbUJlZ1VOG6Jg2kIxCBe-EGMgY-lG1zaEQDy50gOdtqaKF0vos9WXlOL31lkAsx8oRCTWqLu5Gz8z-BGUStW6Q-sNmPIK7lWyjeSqP58iOYEy1yk2_WemNOK1C1RR4itY1FOSW1ImpHJlq3pSh_JzoZxNaBs-a0r2H73uqC5U-uJk1pV2CbotijIs9JuLrt2pwaQSHHghNPsoI-G-m0qKpX5PK1FKjmU"/>
+</div>
+<!-- Messaging Section -->
+<div class="text-center space-y-stack-sm z-10">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">We couldn't find that word</h1>
+<p class="font-body-md text-body-md text-on-surface-variant px-stack-lg">
+                It seems like "quixoticism" isn't in our database yet. Check the spelling or try a different term.
+            </p>
+</div>
+<!-- Action Area -->
+<div class="mt-stack-lg w-full z-10">
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-all hover:bg-primary-container hover:text-on-primary-container" onclick="focusSearch()">
+<span class="material-symbols-outlined">refresh</span>
+                Try Again
+            </button>
+<button class="w-full mt-4 py-3 bg-transparent border-2 border-secondary text-secondary rounded-xl font-label-md text-label-md flex items-center justify-center gap-2 active:scale-[0.98] transition-all hover:bg-secondary-container/10">
+<span class="material-symbols-outlined">history</span>
+                View Recent Searches
+            </button>
+</div>
+<!-- Quick Tips Bento -->
+<div class="mt-12 grid grid-cols-2 gap-4 w-full z-10">
+<div class="bg-surface-container-low p-4 rounded-xl">
+<span class="material-symbols-outlined text-secondary mb-2">spellcheck</span>
+<p class="font-label-sm text-label-sm text-on-surface font-bold">Check Spelling</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Avoid typos and extra spaces.</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<span class="material-symbols-outlined text-secondary mb-2">lightbulb</span>
+<p class="font-label-sm text-label-sm text-on-surface font-bold">Try Synonyms</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Use a similar common word.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe glass-header shadow-lg rounded-t-xl z-50 max-w-md mx-auto right-0">
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant/30 transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1 hover:bg-surface-variant/30 transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span class="font-label-md text-label-md">Saved</span>
+</div>
+</nav>
+<script>
+        function focusSearch() {
+            // Visual feedback for returning to search
+            const main = document.querySelector('main');
+            main.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Simulate a redirect or focus state
+                alert('Ready for a new search! Redirecting to home...');
+                location.reload();
+            }, 300);
+        }
+
+        // Entrance animation logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s`;
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 50);
+            });
+        });
+    </script>
+</body></html>

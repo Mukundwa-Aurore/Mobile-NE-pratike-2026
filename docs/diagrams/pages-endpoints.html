@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LexiTech — Pages &amp; Endpoints</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#e7eeff',
+        primaryTextColor: '#00355f',
+        primaryBorderColor: '#006b5f',
+        lineColor: '#006b5f',
+        fontFamily: 'Inter, system-ui, sans-serif',
+      },
+    });
+  </script>
+</head>
+<body>
+  <header class="hero compact">
+    <p class="eyebrow">LexiTech Dictionary App</p>
+    <h1>Pages &amp; Endpoints Diagram</h1>
+    <p class="lead">Screen navigation structure and external API endpoints used by the application.</p>
+  </header>
+
+  <nav class="nav-bar">
+    <a href="index.html">Home</a>
+    <a href="architecture.html">Architecture</a>
+    <a href="pages-endpoints.html" class="active">Pages &amp; Endpoints</a>
+    <a href="dataflow.html">Data Flow</a>
+  </nav>
+
+  <main class="content">
+    <section class="section">
+      <h2>Screen Navigation Map</h2>
+      <p class="desc">Expo Router file-based routes and how users move between screens.</p>
+      <pre class="mermaid">
+flowchart TD
+  Boot["/  Bootstrap\nindex.tsx"] -->|first launch| Welcome["/welcome\nWelcome Screen"]
+  Boot -->|returning user| Home
+
+  Welcome -->|Get Started| Home
+  Welcome -.->|optional| Create["/create-account\nCreate Account"]
+
+  subgraph DrawerNav["Drawer Layout (drawer)/"]
+    subgraph TabsNav["Tab Navigator (tabs)/"]
+      Home["Home Tab\nsearch/index.tsx\nWord Search"]
+      Saved["Saved Tab\nsaved.tsx\nBookmarked Words"]
+      Settings["Settings Tab\nsettings.tsx\nTheme &amp; Info"]
+    end
+
+    Drawer["Custom Drawer\nSearch History List"]
+  end
+
+  Home -->|valid search| Details["word-details.tsx\nDefinitions &amp; Audio"]
+  Home -->|404 API| NotFound["not-found.tsx\nWord Not Found"]
+  Home -->|network error| Home
+
+  Drawer -->|tap history item| Details
+  Saved -->|tap saved word| Details
+
+  Details -->|back| Home
+  NotFound -->|Try Again| Home
+  NotFound -->|View History| Drawer
+
+  HistoryRedirect["history.tsx\n(hidden redirect)"] -.-> Home
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>Navigation Hierarchy</h2>
+      <p class="desc">Nested navigators configured in the app.</p>
+      <pre class="mermaid">
+flowchart LR
+  Root["Root Stack\n_layout.tsx"] --> Index["index"]
+  Root --> Welcome
+  Root --> Create
+  Root --> Drawer
+
+  Drawer --> Tabs["(tabs)"]
+
+  Tabs --> SearchTab["search"]
+  Tabs --> SavedTab["saved"]
+  Tabs --> SettingsTab["settings"]
+  Tabs -.-> HistHidden["history\nhref: null"]
+
+  SearchTab --> SearchStack["Search Stack"]
+  SearchStack --> SearchIndex["index"]
+  SearchStack --> WordDetails["word-details"]
+  SearchStack --> NotFoundPage["not-found"]
+      </pre>
+    </section>
+
+    <section class="section">
+      <h2>App Pages Reference</h2>
+      <table>
+        <thead>
+          <tr><th>Screen</th><th>Route / File</th><th>Primary Function</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bootstrap</td><td><code>/</code> · <code>app/index.tsx</code></td><td>Checks onboarding flag; redirects to Welcome or Home</td></tr>
+          <tr><td>Welcome</td><td><code>/welcome</code></td><td>Onboarding intro for first-time users</td></tr>
+          <tr><td>Create Account</td><td><code>/create-account</code></td><td>Optional account screen (not required for dictionary core)</td></tr>
+          <tr><td>Home / Search</td><td><code>/(drawer)/(tabs)/search</code></td><td>Search input, validation, Word of the Day</td></tr>
+          <tr><td>Word Details</td><td><code>.../search/word-details</code></td><td>Word, phonetics, definitions, pronunciation controls, bookmark</td></tr>
+          <tr><td>Word Not Found</td><td><code>.../search/not-found</code></td><td>404 handling with retry and drawer access</td></tr>
+          <tr><td>Saved Words</td><td><code>/(drawer)/(tabs)/saved</code></td><td>Persisted bookmark list</td></tr>
+          <tr><td>Settings</td><td><code>/(drawer)/(tabs)/settings</code></td><td>Light/dark theme, stats, quick access</td></tr>
+          <tr><td>Drawer History</td><td><code>CustomDrawerContent</code></td><td>Search history list (Activity 4 requirement)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>External API Endpoints</h2>
+      <p class="desc">Free Dictionary API consumed via <code>services/dictionaryApi.ts</code> using axios.</p>
+      <pre class="mermaid">
+flowchart LR
+  App["LexiTech App\nDictionaryContext"] -->|"axios GET"| EP["Free Dictionary API"]
+
+  subgraph Endpoints["API Endpoints"]
+    E1["GET /api/v2/entries/en/{word}\nFetch word definitions"]
+    E2["Audio URLs in response\nphonetics[].audio"]
+  end
+
+  EP --> E1
+  E1 -->|"200 JSON"| App
+  E1 -->|"404"| NotFoundFlow["Navigate to Not Found"]
+  E1 -->|"network error"| ErrorFlow["Show error + Retry"]
+
+  E2 --> Player["AudioPlayerContext\nexpo-av"]
+      </pre>
+
+      <table>
+        <thead>
+          <tr><th>Method</th><th>Endpoint</th><th>Description</th><th>Response</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GET</strong></td>
+            <td><code>https://api.dictionaryapi.dev/api/v2/entries/en/{word}</code></td>
+            <td>Look up an English word by URL-encoded query</td>
+            <td><code>DictionaryEntry[]</code> JSON array</td>
+          </tr>
+          <tr>
+            <td><strong>GET</strong></td>
+            <td><code>{phonetics[].audio}</code> (from API response)</td>
+            <td>Stream pronunciation audio when available</td>
+            <td>MP3 / audio file URL</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>Internal App Routes (ROUTES constant)</h2>
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Path</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>bootstrap</td><td><code>/</code></td></tr>
+          <tr><td>welcome</td><td><code>/welcome</code></td></tr>
+          <tr><td>createAccount</td><td><code>/create-account</code></td></tr>
+          <tr><td>search</td><td><code>/(drawer)/(tabs)/search</code></td></tr>
+          <tr><td>wordDetails</td><td><code>/(drawer)/(tabs)/search/word-details</code></td></tr>
+          <tr><td>notFound</td><td><code>/(drawer)/(tabs)/search/not-found</code></td></tr>
+          <tr><td>saved</td><td><code>/(drawer)/(tabs)/saved</code></td></tr>
+          <tr><td>settings</td><td><code>/(drawer)/(tabs)/settings</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>LexiTech Solutions Ltd — Dictionary Mobile Application</p>
+  </footer>
+</body>
+</html>

@@ -37,6 +37,8 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+.restore-tmp/
+.expo-tmp-export/
 
 # generated native folders
 /ios

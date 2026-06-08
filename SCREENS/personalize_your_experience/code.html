@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#474b4d",
+            "on-surface": "#111c2d",
+            "on-secondary-fixed": "#00201c",
+            "on-tertiary-fixed": "#191c1e",
+            "on-background": "#111c2d",
+            "surface": "#f9f9ff",
+            "on-tertiary-fixed-variant": "#444749",
+            "on-primary-fixed-variant": "#07497d",
+            "secondary-fixed": "#62fae3",
+            "error": "#ba1a1a",
+            "surface-bright": "#f9f9ff",
+            "background": "#f9f9ff",
+            "tertiary-fixed-dim": "#c4c7c9",
+            "on-tertiary": "#ffffff",
+            "inverse-on-surface": "#ecf1ff",
+            "error-container": "#ffdad6",
+            "secondary": "#006b5f",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f0f3ff",
+            "tertiary-fixed": "#e0e3e5",
+            "primary-fixed": "#d2e4ff",
+            "secondary-fixed-dim": "#3cddc7",
+            "secondary-container": "#62fae3",
+            "primary-fixed-dim": "#a0c9ff",
+            "surface-tint": "#2d6197",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#b8bbbc",
+            "inverse-primary": "#a0c9ff",
+            "on-surface-variant": "#42474f",
+            "on-secondary-fixed-variant": "#005047",
+            "surface-container": "#e7eeff",
+            "inverse-surface": "#263143",
+            "surface-container-highest": "#d8e3fb",
+            "surface-dim": "#cfdaf2",
+            "primary-container": "#0f4c81",
+            "on-primary-fixed": "#001c37",
+            "outline-variant": "#c2c7d1",
+            "on-secondary-container": "#007165",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#727780",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#8ebdf9",
+            "primary": "#00355f",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#dee8ff",
+            "tertiary": "#313436",
+            "surface-variant": "#d8e3fb"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-card": "16px",
+            "unit": "4px",
+            "stack-lg": "24px",
+            "padding-search": "12px 16px",
+            "stack-sm": "8px",
+            "stack-md": "16px",
+            "margin-page": "20px"
+          },
+          "fontFamily": {
+            "label-sm": ["Inter"],
+            "phonetic-display": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "label-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "phonetic-display": ["18px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .interest-card.active {
+      @apply ring-2 ring-secondary bg-secondary-container text-on-secondary-container;
+    }
+    .interest-card.active span.material-symbols-outlined {
+      font-variation-settings: 'FILL' 1;
+    }
+    .glass-effect {
+      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.85);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Suppression Check: Linear Onboarding Flow. Shared Navs Hidden -->
+<!-- Step Progress Header -->
+<header class="fixed top-0 w-full z-50 glass-effect shadow-sm h-16 flex flex-col justify-center px-margin-page">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-md text-label-md text-primary">Step 1 of 2</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Personalization</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/2 rounded-full transition-all duration-700 ease-out"></div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-page max-w-md mx-auto min-h-screen flex flex-col">
+<!-- Hero Section -->
+<section class="mb-stack-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-stack-sm">
+        What are you interested in?
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        We'll tailor your Word of the Day based on your interests.
+      </p>
+</section>
+<!-- Interests Bento Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Technology -->
+<button class="interest-card group flex flex-col items-start p-stack-md bg-surface-container-low rounded-xl border border-transparent transition-all active:scale-95 text-left h-36 justify-between shadow-sm" onclick="toggleSelect(this)">
+<div class="bg-white/50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="technology">precision_manufacturing</span>
+</div>
+<span class="font-label-md text-label-md">Technology</span>
+</button>
+<!-- Science -->
+<button class="interest-card group flex flex-col items-start p-stack-md bg-surface-container-low rounded-xl border border-transparent transition-all active:scale-95 text-left h-36 justify-between shadow-sm" onclick="toggleSelect(this)">
+<div class="bg-white/50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="science">science</span>
+</div>
+<span class="font-label-md text-label-md">Science</span>
+</button>
+<!-- Literature -->
+<button class="interest-card group flex flex-col items-start p-stack-md bg-surface-container-low rounded-xl border border-transparent transition-all active:scale-95 text-left h-36 justify-between shadow-sm" onclick="toggleSelect(this)">
+<div class="bg-white/50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="literature">menu_book</span>
+</div>
+<span class="font-label-md text-label-md">Literature</span>
+</button>
+<!-- Business -->
+<button class="interest-card group flex flex-col items-start p-stack-md bg-surface-container-low rounded-xl border border-transparent transition-all active:scale-95 text-left h-36 justify-between shadow-sm" onclick="toggleSelect(this)">
+<div class="bg-white/50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="business">business_center</span>
+</div>
+<span class="font-label-md text-label-md">Business</span>
+</button>
+<!-- Art -->
+<button class="interest-card group flex flex-col items-start p-stack-md bg-surface-container-low rounded-xl border border-transparent transition-all active:scale-95 text-left h-36 justify-between shadow-sm" onclick="toggleSelect(this)">
+<div class="bg-white/50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="art">palette</span>
+</div>
+<span class="font-label-md text-label-md">Art</span>
+</button>
+<!-- History -->
+<button class="interest-card group flex flex-col items-start p-stack-md bg-surface-container-low rounded-xl border border-transparent transition-all active:scale-95 text-left h-36 justify-between shadow-sm" onclick="toggleSelect(this)">
+<div class="bg-white/50 p-2 rounded-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="history">history_edu</span>
+</div>
+<span class="font-label-md text-label-md">History</span>
+</button>
+</div>
+<!-- Background Decorative Element -->
+<div class="mt-auto pt-stack-lg flex justify-center opacity-30">
+<img alt="Decorative" class="w-full h-40 object-cover rounded-3xl" data-alt="A professional still life photography of an open dictionary and a fountain pen on a minimalist wooden desk. The lighting is soft and natural, emphasizing textures of paper and ink. The overall aesthetic is clean and academic, utilizing a sophisticated palette of soft greys and deep sapphire blues to reflect the Lexicon brand identity of reliability and modern tech-forward precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRoQLckD99adv9qSCWHninKz8u0XdBG5ys5UfTpaxTQ-YxMrE-KrAsfCVydQlepnk1mOvuh0DiyaprZAT-qYI3y2uckWZHg7PTFP4SrNu3UR9a0HqArvrLJj0TjjuVmosYIpVrkNvi3ACqwq9kT7RcJfR5uTgAJvPc4CXIC4OQP7eTt0eNbEG10RXFa6J38VLZa7nkLNx9wZJphOTYI0fzArdf56OhMqtHCAQVxJxImY16ATHB66h68se7qYYho0Zxbyv24NlMdNE"/>
+</div>
+</main>
+<!-- Persistent Action Bar -->
+<footer class="fixed bottom-0 w-full z-50 glass-effect p-margin-page pb-safe shadow-lg">
+<div class="max-w-md mx-auto">
+<button class="w-full h-14 bg-primary text-on-primary rounded-full font-label-md text-label-md transition-all active:scale-95 flex items-center justify-center gap-2 opacity-50 cursor-not-allowed" disabled="" id="continue-btn">
+        Continue
+        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</footer>
+<script>
+    const selectedInterests = new Set();
+    const continueBtn = document.getElementById('continue-btn');
+
+    function toggleSelect(element) {
+      const label = element.querySelector('.font-label-md').innerText;
+      
+      if (selectedInterests.has(label)) {
+        selectedInterests.delete(label);
+        element.classList.remove('active', 'bg-secondary-container', 'text-on-secondary-container', 'ring-2', 'ring-secondary');
+        element.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 0";
+      } else {
+        selectedInterests.add(label);
+        element.classList.add('active', 'bg-secondary-container', 'text-on-secondary-container', 'ring-2', 'ring-secondary');
+        element.querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 1";
+      }
+
+      updateButtonState();
+    }
+
+    function updateButtonState() {
+      if (selectedInterests.size > 0) {
+        continueBtn.disabled = false;
+        continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        continueBtn.classList.add('shadow-xl', 'shadow-primary/20');
+      } else {
+        continueBtn.disabled = true;
+        continueBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        continueBtn.classList.remove('shadow-xl', 'shadow-primary/20');
+      }
+    }
+
+    // Success interaction
+    continueBtn.addEventListener('click', () => {
+      continueBtn.innerHTML = `
+        <svg class="animate-spin h-5 w-5 text-on-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      `;
+      setTimeout(() => {
+        alert("Interests saved! Proceeding to Step 2...");
+        location.reload();
+      }, 1200);
+    });
+  </script>
+</body></html>
